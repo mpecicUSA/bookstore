@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import ListOfBooks from "./components/ListOfBooks"
 import Checkout from "./components/Checkout"
 import Footer from "./components/Footer"
+import { Col, Row } from "reactstrap"
 import './App.css';
 
 class App extends Component {
@@ -19,9 +20,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-          <ListOfBooks booksList={this.state.books} />
-          <Checkout />
+
+          <Header />
+            <Row>
+            <Col xs="10">
+              <ListOfBooks booksList={this.state.books} />
+            </Col>
+            <Col xs="2">
+              <Checkout booksList={this.state.books} />
+            </Col>
+          </Row>
         <Footer />
       </div>
     );

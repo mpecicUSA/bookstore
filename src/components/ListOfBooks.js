@@ -7,30 +7,32 @@ class ListOfBooks extends Component {
         let booksList = this.props.booksList
         console.log(booksList)
         let mappedBooksList = booksList.map(book => 
-            <Col sm="4">
-                <Card key={book.id} body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}> 
-                    <CardBody>
-                        <CardTitle>
-                            {book.title} 
-                        </CardTitle>   
-                        <CardSubtitle>
-                            Price: ${book.price}
-                        </CardSubtitle>
-                        <CardSubtitle>
-                            Author: {book.author}
-                        </CardSubtitle>
-                        <CardText>
-                            {book.description}
-                        </CardText>
-                    </CardBody>
-                    <Button> Buy Me</Button>
-                </Card>
-            </Col>
+                <Col sm="4" style={{marginBottom:15, marginTop:15}}>
+                    <Card key={book.id} body inverse style={{ backgroundColor: '#333', borderColor: '#333', minHeight:"22em"}} className="text-center"> 
+                        <CardBody>
+                            <CardTitle>
+                                {book.title} 
+                            </CardTitle>   
+                            <CardSubtitle style={{marginBottom: 15}}>
+                                Price: ${book.price}
+                            </CardSubtitle>
+                            <CardSubtitle style={{marginBottom: 15}}>
+                                Author: {book.author}
+                            </CardSubtitle>
+                            <CardText>
+                                {book.description}
+                            </CardText>
+                        </CardBody>
+                        <Button> Buy Me</Button>
+                    </Card>
+                </Col>
         )
         return (
-            <Row>
-                    {mappedBooksList}
-            </Row>
+            <>
+                    <Row style={{margin: 5}}>
+                            {mappedBooksList}
+                    </Row>
+            </>
         )
     }
 }
