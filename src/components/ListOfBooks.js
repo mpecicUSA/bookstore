@@ -3,12 +3,15 @@ import { Card, CardTitle, CardText,
     CardSubtitle, CardBody, Row, Col, Button } from 'reactstrap';
 
 class ListOfBooks extends Component {
+    _buyMeClicked = (e) => {
+        this.props.updatesInCart(e.target.value)
+    }
     render = () => {
         let booksList = this.props.booksList
         console.log(booksList)
         let mappedBooksList = booksList.map(book => 
                 <Col sm="4" style={{marginBottom:15, marginTop:15}}>
-                    <Card key={book.id} body inverse style={{ backgroundColor: '#333', borderColor: '#333', minHeight:"22em"}} className="text-center"> 
+                    <Card value={book.title} key={book.id} body inverse style={{ backgroundColor: '#333', borderColor: '#333', minHeight:"22em"}} className="text-center"> 
                         <CardBody>
                             <CardTitle>
                                 {book.title} 
@@ -23,7 +26,7 @@ class ListOfBooks extends Component {
                                 {book.description}
                             </CardText>
                         </CardBody>
-                        <Button> Buy Me</Button>
+                        <Button value={book.id} onClick={this._buyMeClicked}>Buy Me</Button>
                     </Card>
                 </Col>
         )
