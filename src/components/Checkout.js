@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import { Badge, ListGroup, ListGroupItem, Button} from "reactstrap"
 
 class Checkout extends Component {
+    removeItemFromCart = (e) => {
+        this.props.removeFromCart(e.target.value)
+    }
     render = () => {
         let numberOfItemsInCart = 0;
         if (Object.keys(this.props.itemsInCart).length > 0) {
@@ -14,7 +17,7 @@ class Checkout extends Component {
                 </h5>
                 {this.props.itemsInCart.map(item => 
                 <ListGroup flush>
-                    <ListGroupItem>{item.title}</ListGroupItem>
+                    <ListGroupItem key={item.id} value={item.id} onClick={this.removeItemFromCart}> {item.title} </ListGroupItem>
                 </ListGroup> 
                 )}
                 <p>
