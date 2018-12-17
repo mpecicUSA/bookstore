@@ -24,7 +24,9 @@ class App extends Component {
     })
   }
   updateSearchBar = (foo) => {
-    console.log(foo)
+    this.setState({
+      searchBarText: foo
+    })
   }
   updateInCart = (someParam) => {
     axios.patch(`http://localhost:8082/api/books/cart/add/${someParam}`)
@@ -47,12 +49,14 @@ class App extends Component {
         })
       }
   render() {
+    let listOfFilteredBooks = this.state.books.filter(book => book.title.includes(this.state.searchBarText)).map(book => {key={book.id} book={book}} )
+
       return (
         <div className="App">
-            <Header searchBarText={this.state.searchBarText} updateSearchBar={this.updateSearchBar}/>
+            <Header searchText={this.state.searchBarText} updateSearchBar={this.updateSearchBar}/>
               <Row>
               <Col xs="10">
-                <ListOfBooks booksList={this.state.books} updatesInCart={this.updateInCart} />
+                <ListOfBooks booksList={listOfFilteredBooks} updatesInCart={this.updateInCart} />
               </Col>
               <Col xs="2">
                 <Checkout booksList={this.state.books} itemsInCart={this.state.books.filter(item => item.inCart)} removeFromCart={this.removeFromCart} />

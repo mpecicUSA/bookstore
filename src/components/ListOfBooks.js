@@ -8,7 +8,6 @@ class ListOfBooks extends Component {
     }
     render = () => {
         let booksList = this.props.booksList
-        console.log(booksList)
         let mappedBooksList = booksList.map(book => 
                 <Col sm="4" style={{marginBottom:15, marginTop:15}}>
                     <Card value={book.title} key={book.id} body inverse style={{ backgroundColor: '#333', borderColor: '#333', minHeight:"22em"}} className="text-center"> 

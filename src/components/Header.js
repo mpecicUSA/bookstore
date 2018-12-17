@@ -7,8 +7,13 @@ import {
 
 
 class Header extends Component {
-    updateText = () => {
-        console.log("these is the state of text",this.props.searchBarText)
+    //Update value of search bar with state
+    updateText = (e) => {
+        this.props.updateSearchBar(e.target.value)
+    }
+    // on submit dont refresh page pass search up. 
+    submitSearch = (e) => {
+        e.preventDefault();
     }
     render = () => {
         return (
@@ -16,8 +21,8 @@ class Header extends Component {
                 <Navbar color="dark" dark expand="md">
                 <NavbarBrand href="/">Da Amazon Rainforest</NavbarBrand>
                     <Nav className="ml-auto" navbar>
-                        <form className="form-inline">
-                            <input className="form-control mr-sm-2" type="search" onChange={this.props.updateText} placeholder="Search" aria-label="Search"/>
+                        <form onSubmit={this.submitSearch} className="form-inline">
+                            <input className="form-control mr-sm-2" type="text" value={this.props.searchText} onChange={this.updateText} placeholder="Search" aria-label="Search"/>
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </Nav>
