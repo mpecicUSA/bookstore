@@ -7,6 +7,8 @@ import { Col, Row } from "reactstrap"
 import axios from "axios"
 import './App.css';
 
+// NEED HELP WITH UPDATING STATE OF SPECIFIC OBJECT OF SPECIFIC ITEM -- UPDATING INCART BOOL FROM FALSE TO TRUE W/OUT POST REQUESTS 
+// NEED HELP WITH UNDERESTANDING RENDERING OF LIST OF BOOKS THEN SEARCHING THAT LIST FOR A SPECIFIC AUTHOR AND OR TITLE 
 class App extends Component {
   state = {
     books: [],
@@ -48,15 +50,13 @@ class App extends Component {
           })
         })
       }
-  render() {
-    let listOfFilteredBooks = this.state.books.filter(book => book.title.includes(this.state.searchBarText)).map(book => {key={book.id} book={book}} )
-
+render() {
       return (
         <div className="App">
             <Header searchText={this.state.searchBarText} updateSearchBar={this.updateSearchBar}/>
               <Row>
               <Col xs="10">
-                <ListOfBooks booksList={listOfFilteredBooks} updatesInCart={this.updateInCart} />
+                <ListOfBooks booksList={this.state.books} updatesInCart={this.updateInCart} />
               </Col>
               <Col xs="2">
                 <Checkout booksList={this.state.books} itemsInCart={this.state.books.filter(item => item.inCart)} removeFromCart={this.removeFromCart} />
