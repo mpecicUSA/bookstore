@@ -56,7 +56,7 @@ render() {
             <Header searchText={this.state.searchBarText} updateSearchBar={this.updateSearchBar}/>
               <Row>
               <Col xs="10">
-                <ListOfBooks booksList={this.state.books} updatesInCart={this.updateInCart} />
+                <ListOfBooks searchBarText={this.state.searchBarText} booksList={this.state.books} updatesInCart={this.updateInCart} />
               </Col>
               <Col xs="2">
                 <Checkout booksList={this.state.books} itemsInCart={this.state.books.filter(item => item.inCart)} removeFromCart={this.removeFromCart} />
